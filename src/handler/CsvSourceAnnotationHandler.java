@@ -17,7 +17,7 @@ public class CsvSourceAnnotationHandler {
     private Object[] parseArgs(Class<?>[] argTypes, String csvParams) {
         Object[] result = new Object[argTypes.length];
         String[] stringParams = csvParams.split(SEPARATOR);
-        if(argTypes.length != stringParams.length)
+        if (argTypes.length != stringParams.length)
             throw new RuntimeException("Failed parse args in CsvSource annotation");
         for (int i = 0; i < argTypes.length; i++) {
             result[i] = convertToParameterType(argTypes[i], stringParams[i]);

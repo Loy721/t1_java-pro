@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="edf38444-bc35-4787-9b1f-7bb9b45296ae" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/TestRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/annotation/AfterSuite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/annotation/AfterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/annotation/BeforeSuite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/annotation/BeforeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/annotation/CsvSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/annotation/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handler/CsvSourceAnnotationHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handler/TestAnnotationHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TestReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/TestClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/ReflectionUtil.java" afterDir="false" />
+    <list default="true" id="edf38444-bc35-4787-9b1f-7bb9b45296ae" name="Changes" comment="Add reflection">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler/TestAnnotationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/TestAnnotationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/ReflectionUtil.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +25,30 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;contexts&quot;: [
+    {
+      &quot;name&quot;: &quot;minikube&quot;,
+      &quot;originalNamespace&quot;: &quot;default&quot;
+    }
+  ],
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="KubernetesSettings">
+    <option name="contextName" value="minikube" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2sFXszARL0WzvETQCSqUInp4Jb9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -50,15 +64,28 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "task1__reflection",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/dynka/IdeaProjects/t1_java-pro/src",
+    "last_opened_file_path": "C:/Users/dynka/IdeaProjects/t1aop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dynka\IdeaProjects\t1_java-pro" />
+      <recent name="C:\Users\dynka\IdeaProjects\t1_java-pro\src" />
+      <recent name="C:\Users\dynka\IdeaProjects\t1_java-pro\src\annotation" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -81,7 +108,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738052507144</updated>
-      <workItem from="1738052508158" duration="408000" />
+      <workItem from="1738052508158" duration="3508000" />
+      <workItem from="1738076729440" duration="15000" />
+      <workItem from="1738092878435" duration="5113000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -91,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738052774408</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add reflection">
+      <option name="closed" value="true" />
+      <created>1738053141575</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738053141575</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +136,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="Add reflection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add reflection" />
   </component>
 </project>

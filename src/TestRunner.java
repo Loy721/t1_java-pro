@@ -1,43 +1,55 @@
-import annotation.AfterSuite;
-import annotation.BeforeSuite;
+import annotation.*;
 import handler.TestAnnotationHandler;
 import model.TestReport;
-import util.ReflectionUtil;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TestRunner {
-    private final Class<?> clazz;
-    private final Object instanceClazz;
+    private static Map<Class<? extends Annotation>, List<Method>> annotationMethods;
 
-    private final TestAnnotationHandler testAnnotationHandler = new TestAnnotationHandler();
+    public static TestReport runTest(Class<?> clazz) throws Exception {
+        initMapAnnotationMethods(clazz);
 
+        invokeSuiteMethod(BeforeSuite.class);
 
-    public TestRunner(Class<?> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        this.clazz = clazz;
-        this.instanceClazz = clazz.getDeclaredConstructor().newInstance();
-    }
+        TestAnnotationHandler testAnnotationHandler = new TestAnnotationHandler();
+        TestReport result = testAnnotationHandler.handle(annotationMethods.get(BeforeTest.class),
+                annotationMethods.get(Test.class),
+                annotationMethods.get(AfterTest.class),
+                clazz.getDeclaredConstructor().newInstance());
 
-    private TestReport execute() throws InvocationTargetException, IllegalAccessException {
-        Method[] methods = clazz.getMethods();
-
-        invokeStaticMethod(ReflectionUtil.getMethodWithSingleAnnotation(BeforeSuite.class, methods));
-
-        TestReport result = testAnnotationHandler.handle(instanceClazz);
-
-        invokeStaticMethod(ReflectionUtil.getMethodWithSingleAnnotation(AfterSuite.class, methods));
+        invokeSuiteMethod(AfterSuite.class);
 
         return result;
     }
 
-    public static TestReport runTest(Class<?> clazz) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return (new TestRunner(clazz)).execute();
+    private static void initMapAnnotationMethods(Class<?> clazz) {
+        Method[] methods = clazz.getMethods();
+        List<Class<? extends Annotation>> annotations =
+                List.of(AfterSuite.class, AfterTest.class, BeforeTest.class, BeforeSuite.class, Test.class);
+        annotationMethods = annotations.stream()
+                .collect(Collectors.toMap(
+                        annotationClass -> annotationClass,
+                        annotationClass -> Arrays.stream(methods)
+                                .filter(method -> method.isAnnotationPresent(annotationClass))
+                                .toList()
+                ));
     }
 
-    private void invokeStaticMethod(Method method) throws InvocationTargetException, IllegalAccessException {
-        if (method != null) {
+    private static void invokeSuiteMethod(Class<? extends Annotation> clazz) throws InvocationTargetException, IllegalAccessException {
+        List<Method> methods = annotationMethods.get(clazz);
+        if (methods.size() > 1) {
+            throw new RuntimeException(clazz.toString() + " annotation must be submit once");
+        }
+        if (methods.size() == 1) {
+            Method method = methods.getFirst();
             if (Modifier.isStatic(method.getModifiers())) {
                 method.invoke(null);
             } else {
