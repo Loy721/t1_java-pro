@@ -1,0 +1,26 @@
+Задание:
+
+- Разверните локально postgresql БД, создайте таблицу users (id bigserial primary key, username varchar(255) unique);
+
+- Создайте Maven проект и подключите к нему: драйвер postgresql, hickaricp, spring context.
+
+- Создайте пул соединений в виде Spring бина
+
+- Создайте класс User (Long id, String username)
+
+- Реализуйте в виде бина класс UserDao который позволяет выполнять CRUD операции над пользователями
+
+- Реализуйте в виде бина UserService, который позволяет: создавать, удалять, получать одного, получать всех пользователей из базы данных
+
+- Создайте Spring Context, получите из него бин UserService и выполните все возможные операции
+
+Для запуска необходимо выполнить: docker-compose up
+
+Далее создать таблицу:
+```
+CREATE TABLE users(
+id bigserial PRIMARY KEY,
+userName VARCHAR(255) UNIQUE NOT NULL);
+```
+Скрин консоли: 
+![img.png](img.png)
