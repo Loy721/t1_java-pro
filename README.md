@@ -1,26 +1,17 @@
-Задание:
+Скорректируйте ваш сервис:
 
-- Разверните локально postgresql БД, создайте таблицу users (id bigserial primary key, username varchar(255) unique);
+- вместо имеющуейся сущности user сделайте Entity
 
-- Создайте Maven проект и подключите к нему: драйвер postgresql, hickaricp, spring context.
+- Подключите стартер Spring data jpa
 
-- Создайте пул соединений в виде Spring бина
+- вынесите все настройки в файл application.yml/properties
 
-- Создайте класс User (Long id, String username)
+- опишите repository для работы с сущностью, можете использовать Query если посчитаете нужным
 
-- Реализуйте в виде бина класс UserDao который позволяет выполнять CRUD операции над пользователями
+- исправте методы UserService на работу с repository
 
-- Реализуйте в виде бина UserService, который позволяет: создавать, удалять, получать одного, получать всех пользователей из базы данных
+- опишите класс CommandLineRunner и выполните возможные операции
 
-- Создайте Spring Context, получите из него бин UserService и выполните все возможные операции
+- добавте в проект миграцию для создания таблиц базы, инициализируйте тестовый набор данных в бд
 
-Для запуска необходимо выполнить: docker-compose up
-
-Далее создать таблицу:
-```
-CREATE TABLE users(
-id bigserial PRIMARY KEY,
-userName VARCHAR(255) UNIQUE NOT NULL);
-```
-Скрин консоли: 
-![img.png](img.png)
+Скрин консоли: ![img_1.png](img_1.png)
