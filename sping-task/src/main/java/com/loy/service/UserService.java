@@ -2,36 +2,40 @@ package com.loy.service;
 
 import com.loy.dao.UserDao;
 import com.loy.model.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserDao userDao;
 
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
     public User createUser(User user) {
-        return userDao.createUser(user).orElseThrow(() -> new RuntimeException(user + " is not created"));
+        if (user.getId() != null) {
+            throw new IllegalArgumentException("When user create id must be null");
+        }
+        return userDao.save(user);
     }
 
     public User getUser(long id) {
-        return userDao.getUser(id).orElseThrow(() -> new RuntimeException("User with id: " + id + " not found"));
+        return userDao.findById(id).orElseThrow(() -> new RuntimeException("User with id: " + id + " not found"));
     }
 
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return userDao.findAll();
     }
 
     public User updateUser(User user) {
-        return userDao.updateUser(user).orElseThrow(() -> new RuntimeException("User with id: " + user.getId() + " not updated"));
+        if(user.getId() == null) {
+            throw new IllegalArgumentException("When user create id must not be null");
+        }
+        return userDao.save(user);
     }
 
-    public User deleteUser(User user) {
-        return userDao.deleteUser(user).orElseThrow(() -> new RuntimeException("User with id: " + user.getId() + " not deleted"));
+    public void deleteUser(User user) {
+        userDao.delete(user);
     }
 
 }
