@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -18,6 +20,8 @@ public class User {
     private Long id;
     @Column(name = "user_name", unique = true)
     private String userName;
+    @OneToMany(mappedBy = "user")
+    private Set<Product> product;
 
     @Override
     public String toString() {
