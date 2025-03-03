@@ -1,5 +1,6 @@
 package com.loy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class User {
     private Long id;
     @Column(name = "user_name", unique = true)
     private String userName;
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Product> product;
 
