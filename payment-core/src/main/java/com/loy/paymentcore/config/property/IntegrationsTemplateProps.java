@@ -2,16 +2,18 @@ package com.loy.paymentcore.config.property;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.context.properties.bind.ConstructorBinding;
 
 
 @ConfigurationProperties(prefix = "integration")
+@EnableConfigurationProperties(IntegrationsTemplateProps.class)
 public class IntegrationsTemplateProps {
+    private final RestTemplateProps restTemplateProps;
+
     public RestTemplateProps getRestTemplateProps() {
         return restTemplateProps;
     }
-
-    private final RestTemplateProps restTemplateProps;
 
     @ConstructorBinding
     public IntegrationsTemplateProps(RestTemplateProps restTemplateProps) {

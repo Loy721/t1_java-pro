@@ -17,7 +17,7 @@ public class IntegrationConf {
     private final IntegrationsTemplateProps integrationsTemplateProps;
 
     @Bean
-    public RestTemplate integrationRestTemplate(RestTemplateResponseErrorHandler restTemplateResponseErrorHandler) {
+    public RestTemplate userProductRestTemplate(RestTemplateResponseErrorHandler restTemplateResponseErrorHandler) {
         return new RestTemplateBuilder().rootUri(integrationsTemplateProps.getRestTemplateProps().getUri())
                 .setReadTimeout(integrationsTemplateProps.getRestTemplateProps().getConnectTimeout())
                 .setConnectTimeout(integrationsTemplateProps.getRestTemplateProps().getReadTimeout())
