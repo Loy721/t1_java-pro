@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.loy.paymentcore.config.property.IntegrationsTemplateProps;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.text.SimpleDateFormat;
 
 @Configuration
+@EnableConfigurationProperties(IntegrationsTemplateProps.class)
 @RequiredArgsConstructor
 public class IntegrationConf {
     private final IntegrationsTemplateProps integrationsTemplateProps;

@@ -7,7 +7,6 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding;
 
 
 @ConfigurationProperties(prefix = "integration")
-@EnableConfigurationProperties(IntegrationsTemplateProps.class)
 public class IntegrationsTemplateProps {
     private final RestTemplateProps restTemplateProps;
 
