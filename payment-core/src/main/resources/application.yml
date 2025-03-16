@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: payment-core
+
+integration:
+  rest-template-props:
+    uri: "http://localhost:8081"
+    connect-timeout: 5s
+    read-timeout: 10s

@@ -1,6 +1,7 @@
 package com.loy.service;
 
 import com.loy.dao.ProductDao;
+import com.loy.exception.ProductNotFound;
 import com.loy.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class ProductService {
     }
 
     public Product getProduct(long id) {
-        return productDao.findById(id).orElseThrow(() -> new RuntimeException("Product with id: " + id + " not found"));
+        return productDao.findById(id).orElseThrow(() -> new ProductNotFound("Product with id: " + id + " not found"));
     }
 
     public List<Product> getAllByUserId(long userId) {
