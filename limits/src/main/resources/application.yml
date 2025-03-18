@@ -6,4 +6,4 @@ spring:
     driver-class-name: org.postgresql.Driver
 
 limit:
-  default: 10000
+  default-limit: 10000

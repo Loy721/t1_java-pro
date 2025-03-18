@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/limit")
+@RequestMapping("api/v1/limit/user")
 @RequiredArgsConstructor
-public class LimitRestController {
+public class LimitController {
     private final LimitService limitService;
 
     @GetMapping("/{userId}")

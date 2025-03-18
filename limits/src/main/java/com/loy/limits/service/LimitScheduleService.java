@@ -1,6 +1,7 @@
 package com.loy.limits.service;
 
-import com.loy.limits.dao.LimitDao;
+import com.loy.limits.config.properties.LimitProperties;
+import com.loy.limits.dao.LimitRepository;
 import com.loy.limits.model.Limit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -11,13 +12,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class LimitScheduleService {
-    private final LimitDao limitDao;
-    private final LimitAdminService limitAdminService;
+    private final LimitRepository limitRepository;
+    private final LimitProperties limitProperties;
 
     @Scheduled(cron = "0 0 0 * * *")
     public void resetLimit() {
-        limitAdminService.updateDefaultLimit();
-        List<Limit> limits = limitDao.findAll();
-        limits.forEach(l -> l.setLimit(limitAdminService.getDefaultLimit()));
+        List<Limit> limits = limitRepository.findAll();
+        limits.forEach(l -> l.setLimit(limitProperties.getDefaultLimit()));
     }
 }

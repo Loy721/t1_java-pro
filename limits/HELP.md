@@ -22,15 +22,11 @@ docker-compose up
 Для тестирования можно использовать следующие запросы:
 - снять лимит 
 ```
-curl --location --request PATCH 'http://localhost:8080/admin/limit/1?amount=10'
+curl --location --request PATCH 'http://localhost:8080/api/v1/limit/user/1?amount=10'
 ```
 - запросить лимит пользователя по userId
 ```
-curl --location 'http://localhost:8080/limit/1'
-```
-- запрос для изменения лимита по умолчанию 
-```
-curl --location --request POST 'http://localhost:8080/admin/limit/999'
+curl --location 'http://localhost:8080/api/v1/limit/user/1'
 ```
 
 Скрины из Postman:

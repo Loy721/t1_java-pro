@@ -1,6 +1,7 @@
 package com.loy.limits.service;
 
-import com.loy.limits.dao.LimitDao;
+import com.loy.limits.config.properties.LimitProperties;
+import com.loy.limits.dao.LimitRepository;
 import com.loy.limits.exception.LimitException;
 import com.loy.limits.model.Limit;
 import jakarta.persistence.OptimisticLockException;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class LimitService {
-    private final LimitDao limitDao;
-    private final LimitAdminService limitAdminService;
+    private final LimitRepository limitRepository;
+    private final LimitProperties limitProperties;
     private final PaymentRemoteMockService paymentRemoteMockService;
 
     public long getLimitValueByUserId(long userId) {
@@ -29,12 +30,12 @@ public class LimitService {
         }
         paymentRemoteMockService.doPay(amount, userId);
         targetLimit.setLimit(targetLimit.getLimit() - amount);
-        limitDao.save(targetLimit);
+        limitRepository.save(targetLimit);
         return targetLimit.getLimit();
     }
 
     private Limit getLimitByUserId(long userId) {
-        return limitDao.findByUserId(userId)
-                .orElseGet(() -> limitDao.save(new Limit(limitAdminService.getDefaultLimit(), userId)));
+        return limitRepository.findByUserId(userId)
+                .orElseGet(() -> limitRepository.save(new Limit(limitProperties.getDefaultLimit(), userId)));
     }
 }
