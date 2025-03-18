@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class LimitService {
     private final LimitRepository limitRepository;
     private final LimitProperties limitProperties;
-    private final PaymentRemoteMockService paymentRemoteMockService;
 
     public long getLimitValueByUserId(long userId) {
         return getLimitByUserId(userId).getLimit();
@@ -28,7 +27,6 @@ public class LimitService {
         if (targetLimit.getLimit() < amount) {
             throw new LimitException("Limit is less than the amount to be written off");
         }
-        paymentRemoteMockService.doPay(amount, userId);
         targetLimit.setLimit(targetLimit.getLimit() - amount);
         limitRepository.save(targetLimit);
         return targetLimit.getLimit();

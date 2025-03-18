@@ -30,13 +30,10 @@ curl --location 'http://localhost:8080/api/v1/limit/user/1'
 ```
 
 Скрины из Postman:
-![img.png](img.png)
 ![img_2.png](img_2.png)
 ![img_4.png](img_4.png)
 
 Пример запросов с ошибками:
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
 ![img_7.png](img_7.png)
 
 PaymentRemoteMockService - сервис для имитации прохождения платежа с вероятностью 50%
